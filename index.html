@@ -3,183 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Correlativas – Ing. Aeroespacial</title>
-<style>
-:root{--bg:#f4f6fb;--card:#fff;--ink:#1c2333;--mut:#6b7488;--line:#c5ccdb;--ok:#16a34a;--okbg:#dcfce7;--av:#2563eb;--avbg:#dbeafe;--lk:#e8ebf2;--lkink:#8a93a8;--sh:0 2px 8px #1c23331a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1420;--card:#1a2133;--ink:#e8ecf5;--mut:#98a2b8;--line:#3a4560;--ok:#4ade80;--okbg:#14391f;--av:#60a5fa;--avbg:#172a4d;--lk:#1a2133;--lkink:#6b7488;--sh:0 2px 8px #0008}}
-:root[data-theme="dark"]{--bg:#0f1420;--card:#1a2133;--ink:#e8ecf5;--mut:#98a2b8;--line:#3a4560;--ok:#4ade80;--okbg:#14391f;--av:#60a5fa;--avbg:#172a4d;--lk:#1a2133;--lkink:#6b7488;--sh:0 2px 8px #0008}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-header{padding:20px 24px 8px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
-h1{font-size:20px;margin:0}
-.sub{color:var(--mut);font-size:13px;margin-top:4px}
-.stats{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-.bar{width:200px;height:10px;background:var(--lk);border-radius:6px;overflow:hidden;border:1px solid var(--line)}
-.bar i{display:block;height:100%;background:var(--ok);width:0;transition:width .4s}
-button{font:inherit;font-size:13px;padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
-.legend{display:flex;gap:14px;padding:4px 24px 10px;font-size:12px;color:var(--mut);flex-wrap:wrap}
-.legend span:before{content:"";display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:6px;vertical-align:-2px;border:2px solid}
-.l1:before{border-color:var(--ok);background:var(--okbg)}.l2:before{border-color:var(--av);background:var(--avbg)}.l3:before{border-color:var(--line);background:var(--lk)}
-.scroll{overflow-x:auto;padding:8px 24px 40px}
-#map{position:relative;display:flex;gap:56px;width:max-content}
-svg{position:absolute;inset:0;pointer-events:none;overflow:visible}
-.col{width:200px;display:flex;flex-direction:column;gap:14px;position:relative;z-index:1}
-.ch{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);text-align:center;padding-bottom:6px;border-bottom:2px solid var(--line)}
-.ch small{display:block;font-weight:500;text-transform:none;letter-spacing:0}
-.node{padding:10px 12px;border-radius:12px;border:2px solid var(--line);background:var(--lk);color:var(--lkink);cursor:not-allowed;user-select:none;transition:.2s;box-shadow:none}
-.node b{font-size:11px;display:block;letter-spacing:.04em}
-.node span{font-size:13px;line-height:1.25;display:block;margin-top:2px}
-.node.av{border-color:var(--av);background:var(--avbg);color:var(--ink);cursor:pointer;box-shadow:var(--sh)}
-.node.av:hover{transform:translateY(-2px)}
-.node.ok{border-color:var(--ok);background:var(--okbg);color:var(--ink);cursor:pointer}
-.node.ok b:after{content:" ✓";color:var(--ok)}
-.req{font-size:11px;color:var(--mut);margin-top:4px}
-.node.dim{opacity:.3}
-.node.shake{animation:sh .35s}
-@keyframes sh{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
-path{fill:none;stroke:var(--line);stroke-width:1.5;transition:.2s}
-path.on{stroke:var(--ok);stroke-width:2}
-path.hi{stroke:var(--av);stroke-width:2.5}
-path.dim{opacity:.1}
-#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:13px;opacity:0;pointer-events:none;transition:.25s;max-width:90vw;z-index:9}
-#toast.s{opacity:1}
-.note{padding:0 24px 24px;color:var(--mut);font-size:12px;max-width:760px}
-</style>
+<title>Correlativas</title>
+<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 <header>
-  <div><h1>🚀 Ingeniería Aeroespacial · Plan 2018</h1><div class="sub">Tocá una materia disponible para marcarla como aprobada y desbloquear sus correlativas.</div></div>
-  <div class="stats"><div class="bar"><i id="pb"></i></div><span id="pt" style="font-size:13px"></span><button id="rs">Reiniciar</button></div>
+  <div><h1 id="title"></h1><div class="sub">Tocá una materia para cambiar su estado: pendiente, regular (cursada aprobada sin final) o aprobada.</div></div>
+  <div class="stats">
+    <select id="career" hidden></select>
+    <div class="bar"><i class="a" id="pa"></i><i class="r" id="pr"></i></div>
+    <span id="pt" style="font-size:13px"></span>
+    <button id="rs">Reiniciar</button>
+  </div>
 </header>
-<div class="legend"><span class="l1">Aprobada</span><span class="l2">Disponible para cursar</span><span class="l3">Bloqueada</span><span style="margin-left:auto">Pasá el mouse sobre una materia para ver sus vínculos</span></div>
-<div class="scroll"><div id="map"><svg id="svg"></svg></div></div>
-<div class="note">Supuestos: los requisitos del tipo "Tener N materias aprobadas" cuentan las materias que marcaste (sin contar las AFC). Las optativas del PDF (128 hs) y la Electiva Humanística se resumen en un nodo cada una. Las AFC se tratan como una cadena AFC 1 → 5. M0001 (Inglés) es requisito de las materias del 9.º y 10.º semestre.</div>
-<div id="toast"></div>
-<script>
-const S=(id,name,sem,pre=[],n=0)=>[id,name,sem,pre,n];
-const M=[
-S("D1001","Matemática para Ingeniería",0),
-S("A1101","Introducción a la Ingeniería Aeroespacial",1),
-S("F1301","Matemática A",1,["D1001"]),
-S("M1602","Gráfica para Ingeniería",1),
-S("F1302","Matemática B",2,["F1301"]),
-S("F1303","Física I",2,["F1301"]),
-S("U1901","Química para Ingeniería",2),
-S("F1304","Matemática C",3,["F1302"]),
-S("F1305","Física II",3,["F1302","F1303"]),
-S("F1315","Probabilidades y Estadística",3,["F1302"]),
-S("C1151","Estructuras I",4,["F1303"]),
-S("F1306","Matemática D",4,["F1304"]),
-S("F1316","Intro. a la Programación y Análisis Numérico",4,["F1304"]),
-S("M1603","Materiales",4,["D1001","U1901"]),
-S("A1006","Ensayos no Destructivos",5,["F1305","M1603"]),
-S("A1009","Mecánica Racional",5,["F1303","F1304"]),
-S("A1102","Materiales Aeroespaciales",5,["M1603"]),
-S("C1153","Estructuras II",5,["C1151","F1302","M1603"]),
-S("M1604","Termodinámica",5,["F1302","F1303","U1901"]),
-S("A1008","Estructuras III",6,["C1153","F1316"]),
-S("A1010","Electrotecnia y Sist. Eléctricos de Aeronaves",6,["F1304","F1305"]),
-S("A1011","Mecánica de los Fluidos I",6,["F1306","F1316","M1604"]),
-S("A1016","Mecanismos y Sistemas de Aeronaves",6,["A1009","C1153","M1603"]),
-S("AFC1","Actividades de Formación Complementaria I",6,[],10),
-S("A1012","Sistemas Dinámicos",7,["A1008","A1009","F1305","F1306","F1315","F1316"]),
-S("A1013","Estructuras IV",7,["A1008","A1102"]),
-S("A1015","Mecánica de los Fluidos II",7,["A1011","F1315"]),
-S("P1752","Economía para Ingenieros y Org. Industrial",7,[],15),
-S("AFC2","Actividades de Formación Complementaria II",7,["AFC1"]),
-S("ELEC","Electiva Humanística",7,[],15),
-S("A1014","Estructuras V",8,["A1013"]),
-S("A1017","Motores a Reacción",8,["A1015"]),
-S("A1018","Aerodinámica y Mecánica de Vuelo I",8,["A1009","A1015"]),
-S("A1019","Procesos de Fabricación",8,["A1102"]),
-S("P1759","Ingeniería Legal y Ejercicio Profesional",8,[],20),
-S("AFC3","Actividades de Formación Complementaria III",8,["AFC2"]),
-S("M0001","Inglés (prueba de suficiencia)",8.5),
-S("A1020","Motores Alternativos",9,["A1012","A1016","M0001","M1604"]),
-S("A1021","Aerodinámica y Mecánica de Vuelo II",9,["A1012","A1018","M0001"]),
-S("A1022","Mediciones e Instrumentos de Aeronaves",9,["A1010","A1016","A1017","M0001"]),
-S("A1028","Aeropuertos y Operaciones de Vuelo",9,["A1017","A1018","M0001"]),
-S("AFC4","Actividades de Formación Complementaria IV",9,["M0001","AFC3"]),
-S("A1023","Control y Guiado",10,["A1012","A1021","A1022","M0001"]),
-S("A1024","Talleres y Mantenimiento Aeronáutico",10,["M0001"],30),
-S("A1026","Sistemas y Equipos de Aeronaves",10,["A1022","M0001"]),
-S("A1034","Práctica Profesional Supervisada",10,["M0001"],30),
-S("AFC5","Actividades de Formación Complementaria V",10,["M0001","AFC4"]),
-S("OPT","Optativas (128 hs en total)",10,["M0001"],30)
-];
-const lab=s=>s===0?["Nivelación","Ingreso"]:s===8.5?["Idioma","Requisito"]:[s+".º semestre",Math.ceil(s/2)+".º año"];
-const KEY="correlativas-aeroespacial";
-let done=new Set();
-try{done=new Set(JSON.parse(localStorage.getItem(KEY)||"[]"))}catch(e){}
-const byId=Object.fromEntries(M.map(m=>[m[0],m]));
-const map=document.getElementById("map"),svg=document.getElementById("svg"),els={};
-const cnt=()=>[...done].filter(x=>!x.startsWith("AFC")).length;
-const can=id=>byId[id][3].every(p=>done.has(p))&&cnt()>=byId[id][4];
-const avail=id=>!done.has(id)&&can(id);
-[...new Set(M.map(m=>m[2]))].sort((a,b)=>a-b).forEach(s=>{
-  const c=document.createElement("div");c.className="col";
-  c.innerHTML=`<div class="ch">${lab(s)[0]}<small>${lab(s)[1]}</small></div>`;
-  M.filter(m=>m[2]===s).forEach(m=>{
-    const n=document.createElement("div");n.className="node";
-    n.innerHTML=`<b>${m[0]}</b><span>${m[1]}</span>`+(m[4]?`<div class="req">Requiere ${m[4]} materias aprobadas</div>`:"");
-    n.onclick=()=>toggle(m[0]);
-    n.onmouseenter=()=>focus(m[0]);n.onmouseleave=()=>focus(null);
-    els[m[0]]=n;c.appendChild(n);
-  });
-  map.appendChild(c);
-});
-const edges=[];
-M.forEach(m=>m[3].forEach(p=>edges.push([p,m[0]])));
-const paths=edges.map(()=>{const p=document.createElementNS("http://www.w3.org/2000/svg","path");svg.appendChild(p);return p});
-function toggle(id){
-  if(done.has(id)){
-    done.delete(id);
-    let ch=true;while(ch){ch=false;[...done].forEach(x=>{if(!can(x)){done.delete(x);ch=true}})}
-  }else if(avail(id)){done.add(id)}
-  else{
-    const miss=byId[id][3].filter(p=>!done.has(p));
-    let t=[];if(miss.length)t.push("te falta aprobar: "+miss.join(", "));
-    if(cnt()<byId[id][4])t.push("necesitás "+byId[id][4]+" materias aprobadas (tenés "+cnt()+")");
-    els[id].classList.add("shake");setTimeout(()=>els[id].classList.remove("shake"),400);
-    toast(t.join(" · ").replace(/^./,c=>c.toUpperCase()));return;
-  }
-  try{localStorage.setItem(KEY,JSON.stringify([...done]))}catch(e){}
-  render();
-}
-function render(){
-  M.forEach(m=>{els[m[0]].className="node "+(done.has(m[0])?"ok":avail(m[0])?"av":"")});
-  edges.forEach((e,i)=>paths[i].setAttribute("class",done.has(e[0])?"on":""));
-  const total=M.length,n=done.size;
-  document.getElementById("pb").style.width=n/total*100+"%";
-  document.getElementById("pt").textContent=`${n} de ${total} · ${Math.round(n/total*100)}% · ${cnt()} materias contadas`;
-}
-function draw(){
-  const o=map.getBoundingClientRect();
-  svg.setAttribute("width",o.width);svg.setAttribute("height",o.height);
-  edges.forEach((e,i)=>{
-    const a=els[e[0]].getBoundingClientRect(),b=els[e[1]].getBoundingClientRect();
-    const x1=a.right-o.left,y1=a.top+a.height/2-o.top,x2=b.left-o.left,y2=b.top+b.height/2-o.top,d=Math.max(30,(x2-x1)/2);
-    paths[i].setAttribute("d",`M${x1},${y1} C${x1+d},${y1} ${x2-d},${y2} ${x2},${y2}`);
-  });
-}
-function focus(id){
-  const rel=new Set();
-  if(id){
-    rel.add(id);
-    const up=[id];while(up.length){const x=up.pop();byId[x][3].forEach(p=>{if(!rel.has(p)){rel.add(p);up.push(p)}})}
-    const dn=[id];while(dn.length){const x=dn.pop();M.forEach(m=>{if(m[3].includes(x)&&!rel.has(m[0])){rel.add(m[0]);dn.push(m[0])}})}
-  }
-  M.forEach(m=>els[m[0]].classList.toggle("dim",!!id&&!rel.has(m[0])));
-  edges.forEach((e,i)=>{
-    const p=paths[i];p.classList.toggle("dim",!!id&&!(rel.has(e[0])&&rel.has(e[1])));
-    p.classList.toggle("hi",!!id&&rel.has(e[0])&&rel.has(e[1]));
-  });
-}
-let tt;function toast(t){const e=document.getElementById("toast");e.textContent=t;e.classList.add("s");clearTimeout(tt);tt=setTimeout(()=>e.classList.remove("s"),2200)}
-document.getElementById("rs").onclick=()=>{if(confirm("¿Borrar todo el progreso?")){done.clear();try{localStorage.removeItem(KEY)}catch(e){}render()}};
-addEventListener("resize",draw);
-render();draw();document.fonts&&document.fonts.ready.then(draw);
-</script>
+<div class="legend"><span class="l1">Aprobada</span><span class="lr">Regular (sin final)</span><span class="l2">Disponible para cursar</span><span class="l3">Bloqueada</span><span style="margin-left:auto">Pasá el mouse sobre una materia para ver sus vínculos</span></div>
+<div class="scroll"><div id="map"></div></div>
+<div class="note" id="note"></div>
+<script type="module" src="js/main.js"></script>
 </body>
 </html>
