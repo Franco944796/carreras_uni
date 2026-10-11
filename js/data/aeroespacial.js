@@ -13,7 +13,11 @@ export default {
   rules: { cursar: "regular" },
   // Títulos de columna. Por defecto: "N.º semestre / N.º año"
   labels: { 0: ["Nivelación", "Ingreso"], 8.5: ["Idioma", "Requisito"] },
-  note: 'Los requisitos "Tener N materias aprobadas" cuentan solo las aprobadas (sin AFC). Las optativas y la Electiva Humanística se resumen en un nodo. Para cursar alcanza con tener las correlativas regulares; para aprobar se exigen aprobadas.',
+  notes: [
+    "Las AFC (Actividades de Formación Complementaria) no cuentan para los requisitos de “N materias aprobadas”.",
+    "Las optativas (128 hs) y la Electiva Humanística se resumen en un nodo cada una.",
+    "Las AFC se encadenan de AFC 1 a AFC 5, e Inglés (M0001) es requisito del 9.º y 10.º semestre.",
+  ],
   subjects: [
 S("D1001","Matemática para Ingeniería",0),
 S("A1101","Introducción a la Ingeniería Aeroespacial",1),

@@ -8,17 +8,26 @@
 </head>
 <body>
 <header>
-  <div><h1 id="title"></h1><div class="sub">Tocá una materia para cambiar su estado: pendiente, regular (cursada aprobada sin final) o aprobada.</div></div>
+  <div>
+    <h1 class="title"><span id="icon"></span><span class="pick" id="pick"><select id="career" aria-label="Elegir carrera"></select></span><span id="plan" class="plan"></span></h1>
+    <div class="sub">Tocá una materia para cambiar su estado: pendiente, regular o aprobada.</div>
+  </div>
   <div class="stats">
-    <select id="career" hidden></select>
     <div class="bar"><i class="a" id="pa"></i><i class="r" id="pr"></i></div>
     <span id="pt" style="font-size:13px"></span>
     <button id="rs">Reiniciar</button>
   </div>
 </header>
-<div class="legend"><span class="l1">Aprobada</span><span class="lr">Regular (sin final)</span><span class="l2">Disponible para cursar</span><span class="l3">Bloqueada</span><span style="margin-left:auto">Pasá el mouse sobre una materia para ver sus vínculos</span></div>
+<div class="legend"><span class="l1">Aprobada</span><span class="lr">Regular (sin final)</span><span class="l2">Disponible para cursar</span><span class="l3">Bloqueada</span></div>
+<details class="info">
+  <summary>Cómo funciona y supuestos</summary>
+  <div class="cols">
+    <div><h2>Cómo funciona</h2><ul id="how"></ul></div>
+    <div id="notes-box"><h2>Supuestos de esta carrera</h2><ul id="notes"></ul></div>
+  </div>
+</details>
 <div class="scroll"><div id="map"></div></div>
-<div class="note" id="note"></div>
+
 <script type="module" src="js/main.js"></script>
 </body>
 </html>

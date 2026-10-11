@@ -62,3 +62,22 @@ select{font:inherit;font-size:13px;padding:6px 8px;border-radius:8px;border:1px 
 .menu small{grid-column:2;font-size:11px;color:var(--mut);font-weight:400}
 .dot{width:12px;height:12px;border-radius:4px;border:2px solid var(--line);align-self:center}
 .dot.s1{border-color:var(--rg);background:var(--rgbg)}.dot.s2{border-color:var(--ok);background:var(--okbg)}
+/* ===== Título con selector de carrera ===== */
+.title{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:22px}
+.pick{position:relative;display:inline-flex}
+.pick:after{content:"";position:absolute;right:14px;top:50%;width:7px;height:7px;border:solid var(--mut);border-width:0 2px 2px 0;transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.pick select{appearance:none;-webkit-appearance:none;font:inherit;font-weight:700;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:4px 32px 4px 12px;cursor:pointer;min-width:0;transition:border-color .2s}
+.pick select:hover,.pick select:focus-visible{border-color:var(--av);outline:none}
+.pick option{background:var(--card);color:var(--ink);font-weight:500}
+.pick.single:after{display:none}
+.pick.single select{border-color:transparent;background:none;padding-left:0;cursor:default;pointer-events:none;opacity:1}
+.plan{font-size:14px;font-weight:500;color:var(--mut)}
+/* ===== Información (panel flotante) ===== */
+.info{position:relative;width:max-content;max-width:calc(100% - 48px);margin:0 24px 6px;border:1px solid var(--line);border-radius:10px;background:var(--card);font-size:12.5px}
+.info summary{cursor:pointer;padding:6px 12px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+.info .cols{position:absolute;z-index:15;top:calc(100% + 6px);left:0;width:min(760px,calc(100vw - 48px));display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px 28px;padding:12px 16px 14px;border:1px solid var(--line);border-radius:12px;background:color-mix(in srgb,var(--card) 94%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:0 10px 30px #0003}
+.info h2{font-size:12px;margin:0 0 6px;color:var(--ink)}
+.info ul{margin:0;padding-left:18px;color:var(--mut);line-height:1.5}
+.info li+li{margin-top:2px}
+.info b{color:var(--ink);font-weight:600}
+.info [hidden]{display:none}

@@ -1,0 +1,56 @@
+const S = (id, name, sem, pre = [], n = 0) => ({ id, name, sem, pre, n });
+const CN = ["CNE", "CNC", "CNM"]; // curso de ingreso: requisito de las materias de 1.er semestre
+
+export default {
+  id: "informatica",
+  legacyKey: "correlativas-lic-info", // clave de la versión anterior (migración automática)
+  icon: "🎓",
+  name: "Licenciatura en Informática",
+  plan: "Plan 2021",
+  rules: { cursar: "regular" }, // "approved" si para cursar exigen correlativas aprobadas
+  labels: { 0: ["Ingreso", "Curso de ingreso"] },
+  notes: [
+    "El Taller de Inglés (SI208) no tiene correlativas, pero es requisito de las materias donde figura.",
+    "Optativa 1 figura con correlativa “LI” en el PDF: se muestra sin requisitos.",
+    "SI505 y la Tesina no listan correlativas en el PDF: se encadenaron a SI504 y SI505.",
+  ],
+  subjects: [
+    S("CNE","Expresión de Problemas y Algoritmos",0,[]),
+    S("CNC","Conceptos de Organización de Computadoras",0,[]),
+    S("CNM","Matemática 0",0,[]),
+    S("SI106","Conceptos de Algoritmos, Datos y Programas",1,CN),
+    S("SI104","Organización de Computadoras",1,CN),
+    S("SI101","Matemática 1",1,CN),
+    S("SI107","Taller de Programación",2,["SI106"]),
+    S("SI105","Arquitectura de Computadoras",2,["SI104"]),
+    S("SI102","Matemática 2",2,["SI101"]),
+    S("SI209","Fundamentos de Organización de Datos",3,["SI107"]),
+    S("SI203","Algoritmos y Estructuras de Datos",3,["SI102","SI107"]),
+    S("SI207","Seminario de Lenguajes",3,["SI107"]),
+    S("SI210","Diseño de Bases de Datos",4,["SI209"]),
+    S("SI202","Ingeniería de Software 1",4,["SI107"]),
+    S("SI206","Orientación a Objetos 1",4,["SI107"]),
+    S("SI204","Introducción a los Sistemas Operativos",4,["SI107","SI105"]),
+    S("SI208","Taller de Lecto-comprensión y Traducción en Inglés",4,[]),
+    S("SI308","Matemática 3",5,["SI102"]),
+    S("SI302","Ingeniería de Software 2",5,["SI202","SI208"]),
+    S("SI306","Conceptos y Paradigmas de Lenguajes de Programación",5,["SI203","SI207","SI208"]),
+    S("SI307","Orientación a Objetos 2",5,["SI206","SI208"]),
+    S("SI304","Redes y Comunicaciones",6,["SI102","SI204","SI208"]),
+    S("SI301","Programación Concurrente",6,["SI204","SI207","SI208"]),
+    S("SI305","Proyecto de Software",6,["SI210","SI202","SI203","SI207","SI208","SI206"]),
+    S("OI309","Computabilidad y Complejidad",6,["SI203","SI308","SI208"]),
+    S("OI401","Teoría de la Computación y Verificación de Programas",7,["SI308","SI306"]),
+    S("SI403","Sistemas Operativos",7,["SI304"]),
+    S("SI404","Sistemas Paralelos",7,["SI301"]),
+    S("OPT1","Optativa 1",7,[]),
+    S("OI406","Lógica e Inteligencia Artificial",8,["SI102","SI306"]),
+    S("SI409","Matemática 4",8,["SI308"]),
+    S("OI402","Laboratorio de Software",8,["SI305"]),
+    S("OI405","Programación Distribuida y Tiempo Real",8,["SI306","SI304"]),
+    S("OI502","Diseño de Experiencia de Usuario",9,["SI302","OI402"]),
+    S("SI504","Aspectos Sociales y Profesionales de Informática",9,["SI305"]),
+    S("SI505","Aspectos Éticos, Soc. y Prof. Avanzados de Informática",9,["SI504"]),
+    S("OI503","Tesina de Licenciatura en Informática",9,["SI505"])
+  ],
+};
