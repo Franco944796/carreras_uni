@@ -1,0 +1,1 @@
+1. En la primer materia (matematica para ingenieria), no existe la instancia de aprobar sin final (regular), se aprueba directamente.
