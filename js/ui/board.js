@@ -31,7 +31,7 @@ export function createBoard(root, career, engine, { onSelect }) {
   function render() {
     for (const [id, n] of nodes) {
       const st = engine.status(id);
-      n.className = "node " + (st === 2 ? "ok" : st === 1 ? "reg" : engine.can(id, 1) ? "av" : "");
+      n.className = "node " + (st === 2 ? "ok" : st === 1 ? "reg" : engine.can(id, 1) || engine.can(id, 2) ? "av" : "");
       n.querySelector(".tag").textContent = st === 1 ? (engine.can(id, 2) ? "Final habilitado" : "Final bloqueado") : "";
     }
     engine.edges.forEach(([from], i) => {

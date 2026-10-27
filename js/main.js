@@ -6,7 +6,16 @@ import { openMenu } from "./ui/menu.js";
 
 const $ = (id) => document.getElementById(id);
 let career = CAREERS.find((c) => c.id === new URLSearchParams(location.search).get("c")) || CAREERS[0];
-let engine, board;
+let engine, board, bg;
+
+// Solo escritorio con mouse y sin "reducir movimiento"; en el resto queda el gradiente CSS.
+const fancy = matchMedia("(min-width: 900px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)");
+async function syncBackground() {
+  if (!fancy.matches) { bg?.then((b) => b.stop()); bg = null; return; }
+  bg ??= import("./ui/background.js").then((m) => m.createBackground());
+  (await bg).set(career.bg);
+}
+fancy.addEventListener("change", syncBackground);
 
 const list = (ul, items) => { ul.innerHTML = items.map((t) => `<li>${t}</li>`).join(""); };
 
@@ -41,8 +50,9 @@ function refresh() {
 function mount() {
   engine = createEngine(career, load(career));
   document.title = `Correlativas – ${career.name}`;
+  document.documentElement.dataset.bg = career.bg || "circuit";
   $("icon").textContent = career.icon;
-  $("plan").textContent = career.plan ? `· ${career.plan}` : "";
+  $("plan").textContent = career.plan || "";
   $("career").value = career.id;
   fitSelect();
   list($("how"), howItems());
@@ -57,6 +67,7 @@ function mount() {
     }),
   });
   refresh();
+  syncBackground();
 }
 
 const sel = $("career");

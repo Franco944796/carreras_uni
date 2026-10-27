@@ -1,11 +1,13 @@
 // Datos de la carrera. Para agregar otra: copiar este archivo y registrarla en data/index.js
 // S(código, nombre, semestre, [correlativas], N materias aprobadas requeridas)
+// direct: true = se aprueba directo, sin instancia de regular
 const S = (id, name, sem, pre = [], n = 0) => ({ id, name, sem, pre, n, noCount: id.startsWith("AFC") });
 
 export default {
   id: "aeroespacial",
   legacyKey: "correlativas-aeroespacial", // clave de la versión anterior (migración automática)
   icon: "🚀",
+  bg: "space", // fondo animado de escritorio: "circuit" o "space"
   name: "Ingeniería Aeroespacial",
   plan: "Plan 2018",
   // "regular": para CURSAR alcanza con tener las correlativas regulares.
@@ -16,10 +18,11 @@ export default {
   notes: [
     "Las AFC (Actividades de Formación Complementaria) no cuentan para los requisitos de “N materias aprobadas”.",
     "Las optativas (128 hs) y la Electiva Humanística se resumen en un nodo cada una.",
+    "Matemática para Ingeniería (D1001) se aprueba directamente: no tiene instancia de regular.",
     "Las AFC se encadenan de AFC 1 a AFC 5, e Inglés (M0001) es requisito del 9.º y 10.º semestre.",
   ],
   subjects: [
-S("D1001","Matemática para Ingeniería",0),
+{ ...S("D1001","Matemática para Ingeniería",0), direct: true },
 S("A1101","Introducción a la Ingeniería Aeroespacial",1),
 S("F1301","Matemática A",1,["D1001"]),
 S("M1602","Gráfica para Ingeniería",1),

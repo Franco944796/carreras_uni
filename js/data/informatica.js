@@ -5,6 +5,7 @@ export default {
   id: "informatica",
   legacyKey: "correlativas-lic-info", // clave de la versión anterior (migración automática)
   icon: "🎓",
+  bg: "circuit",
   name: "Licenciatura en Informática",
   plan: "Plan 2021",
   rules: { cursar: "regular" }, // "approved" si para cursar exigen correlativas aprobadas

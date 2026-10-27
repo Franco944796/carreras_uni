@@ -8,7 +8,7 @@ export function openMenu(anchor, id, engine, onPick) {
   const cur = engine.status(id);
   menu = document.createElement("div");
   menu.className = "menu";
-  for (const v of [0, 1, 2]) {
+  for (const v of engine.levels(id)) {
     const ok = engine.can(id, v), b = document.createElement("button");
     b.disabled = !ok && v !== cur;
     if (v === cur) b.className = "cur";

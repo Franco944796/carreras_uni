@@ -16,6 +16,7 @@ export function createEngine(career, saved = {}) {
   const can = (id, v) => {
     if (v === S.NONE) return true;
     const s = byId.get(id);
+    if (v === S.REGULAR && s.direct) return false;
     return missing(s, v === S.APPROVED ? S.APPROVED : minCursar).length === 0 && approvedCount() >= s.n;
   };
 
@@ -59,6 +60,7 @@ export function createEngine(career, saved = {}) {
 
   return {
     status, can, explain, set, related,
+    levels: (id) => byId.get(id).direct ? [S.NONE, S.APPROVED] : [S.NONE, S.REGULAR, S.APPROVED],
     edges: subs.flatMap((s) => s.pre.map((p) => [p, s.id])),
     stats: () => ({
       total: subs.length,
