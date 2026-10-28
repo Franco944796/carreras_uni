@@ -3,6 +3,7 @@ import { createEngine } from "./core/engine.js";
 import { load, save, clear } from "./core/storage.js";
 import { createBoard } from "./ui/board.js";
 import { openMenu } from "./ui/menu.js";
+import { suggestDesktop } from "./ui/gate.js";
 
 const $ = (id) => document.getElementById(id);
 let career = CAREERS.find((c) => c.id === new URLSearchParams(location.search).get("c")) || CAREERS[0];
@@ -86,3 +87,4 @@ addEventListener("pointerdown", (e) => { if (info.open && !info.contains(e.targe
 addEventListener("keydown", (e) => { if (e.key === "Escape") info.open = false; });
 addEventListener("resize", () => board?.draw());
 mount();
+suggestDesktop();

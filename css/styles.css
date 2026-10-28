@@ -97,6 +97,16 @@ path.dim{opacity:.08}
 .dot{width:12px;height:12px;border-radius:4px;border:2px solid var(--line);align-self:center}
 .dot.s1{border-color:var(--rg);background:var(--rgbg)}.dot.s2{border-color:var(--ok);background:var(--okbg)}
 
+.gated{overflow:hidden}
+.gate{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:24px 16px calc(24px + env(safe-area-inset-bottom,0px));background:color-mix(in srgb,var(--bg) 94%,transparent)}
+.gate-card{width:min(360px,100%);padding:28px 22px 20px;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:0 20px 50px #0006,0 0 0 1px color-mix(in srgb,var(--accent) 15%,transparent)}
+.gate-ic{display:grid;place-items:center;width:56px;height:56px;margin:0 auto 14px;font-size:28px;border-radius:16px;background:color-mix(in srgb,var(--accent) 14%,transparent);border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);box-shadow:0 0 22px color-mix(in srgb,var(--accent) var(--g),transparent)}
+.gate h2{margin:0 0 10px;font-size:19px}
+.gate p{margin:0 0 20px;font-size:14px;line-height:1.5;color:var(--mut)}
+.gate button{display:block;width:100%;padding:12px;font-size:15px}
+.gate-link{background:var(--accent);border-color:var(--accent);color:var(--bg);font-weight:600}
+.gate-go{margin-top:8px;border-color:transparent;background:none;color:var(--mut)}
+
 @media (hover:hover){
   .node.av:hover,.node.ok:hover,.node.reg:hover{transform:translateY(-2px)}
   .node.av:hover{box-shadow:0 0 0 1px var(--av),0 8px 26px color-mix(in srgb,var(--av) var(--g),transparent)}
