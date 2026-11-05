@@ -15,6 +15,11 @@ Mapa interactivo de correlativas (Lic. en Informática e Ing. Aeroespacial). Sit
 - `js/ui/background.js`: canvas con pistas y pulsos (circuit) / estrellas, Saturno con anillos (C, B, A, divisiones de Cassini y Encke) y dos lunas (space); DPR máx. 1,5, parallax con el mouse.
 - `js/ui/gate.js`: sugerencia de usar computadora en celular.
 - Corrección #1 de `correciones.md` aplicada (engine `levels()`, menú y tablero).
+- 2026-11-05 Contador de visitas junto a «Reiniciar» (`js/ui/visits.js`, `#visits` en `index.html`): un total para
+  toda la web, suma 1 por carga o recarga (cambiar de carrera no recarga, no suma). Abacus:
+  `abacus.jasoncameron.dev/hit/franco944796-correlativas/inicio`; en `file://` o localhost usa `/get` (solo lee). Si
+  falla, no aparece. Vence a los 6 meses sin visitas. Mismo contador en el portafolio y en Trilex. Ojo: `svg` y `path`
+  tienen reglas globales del mapa; el contador las anula. Probado en Firefox (escritorio, las dos carreras, celular).
 
 ## Pendiente
 - Nada abierto. `correciones.md` sigue con el ítem 1 escrito (ya resuelto).

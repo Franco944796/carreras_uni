@@ -37,6 +37,11 @@ h1{margin:0}
 .pt{font:12px var(--mono);color:var(--mut)}
 button{font:inherit;font-size:13px;padding:6px 14px;border-radius:99px;border:1px solid var(--line);background:var(--glass);color:var(--ink);cursor:pointer;transition:border-color .2s,box-shadow .2s}
 button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.visits{display:inline-flex;align-items:center;gap:6px;font:12px var(--mono);color:var(--mut);white-space:nowrap}
+.visits[hidden]{display:none}
+.visits svg{position:static;width:15px;height:15px;flex-shrink:0;color:var(--accent)}
+/* svg y path tienen reglas globales para las líneas del mapa */
+.visits path{stroke:currentColor;transition:none}
 #rs:hover{border-color:var(--accent);box-shadow:0 0 14px color-mix(in srgb,var(--accent) var(--g),transparent)}
 
 .legend{display:flex;gap:8px;padding:0 24px 10px;font-size:12px;color:var(--mut);flex-wrap:wrap}
