@@ -31,12 +31,15 @@ export function createBoard(root, career, engine, { onSelect }) {
   function render() {
     for (const [id, n] of nodes) {
       const st = engine.status(id);
-      n.className = "node " + (st === 2 ? "ok" : st === 1 ? "reg" : engine.can(id, 1) || engine.can(id, 2) ? "av" : "");
-      n.querySelector(".tag").textContent = st === 1 ? (engine.can(id, 2) ? "Final habilitado" : "Final bloqueado") : "";
+      n.className = "node " + (st === 2 ? "ok" : st === 3 ? "pro" : st === 1 ? "reg" : st === 4 ? "crs" : engine.can(id, 1) || engine.can(id, 2) ? "av" : "");
+      n.querySelector(".tag").textContent =
+        st === 1 ? (engine.can(id, 2) ? "Final habilitado" : "Final bloqueado")
+        : st === 3 ? "Falta aprobar: " + engine.pendingFinals(id).join(", ")
+        : "";
     }
     engine.edges.forEach(([from], i) => {
       const st = engine.status(from);
-      paths[i].setAttribute("class", st === 2 ? "on" : st === 1 ? "reg" : "");
+      paths[i].setAttribute("class", st === 2 ? "on" : st === 3 ? "pro" : st === 1 ? "reg" : "");
     });
   }
 

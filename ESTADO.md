@@ -9,6 +9,12 @@ Mapa interactivo de correlativas (Lic. en Informática e Ing. Aeroespacial). Sit
 - Celular / táctil / "reducir movimiento": solo gradiente CSS; `js/ui/background.js` no se descarga y no hay `backdrop-filter`.
 - Celular (<900px al cargar): cartel a pantalla completa que sugiere PC («Copiar/Enviar enlace» / «Continuar igualmente»); continuar se recuerda en `localStorage` (`correlativas:mobile-ok`).
 - Materias con `direct: true` se aprueban directo (sin estado regular). Hoy: D1001.
+- Promoción (`rules.promo: true`, hoy solo Informática): estado 3 «Promocionada» (violeta, `--pm`). Se elige con las
+  correlativas regulares y alguna sin aprobar; vale como regular para cursar, no como aprobada ni para «N aprobadas».
+  Pasa sola a Aprobada al aprobar sus correlativas; una Aprobada cuyas correlativas bajan vuelve a Promocionada.
+  Sin fecha ni aviso de los 6 meses (decisión del usuario).
+- Estado 4 «Cursando» (rosa, `--cu`) en las dos carreras: mismos requisitos que regularizar (también en directas),
+  no habilita correlativas (`RANK` 0), suma «N cursando» al contador pero no a la barra.
 
 ## Hecho (2026-10-27)
 - Rediseño de `css/styles.css` y encabezado de `index.html`.
@@ -21,6 +27,11 @@ Mapa interactivo de correlativas (Lic. en Informática e Ing. Aeroespacial). Sit
   falla, no aparece. Vence a los 6 meses sin visitas. Mismo contador en el portafolio y en Trilex. Ojo: `svg` y `path`
   tienen reglas globales del mapa; el contador las anula. Probado en Firefox (escritorio, las dos carreras, celular).
 
+- 2026-11-09 Estado «Promocionada» en Informática (`engine.js` con `RANK`, `states.js`, `board.js`, `main.js`,
+  leyenda y barra en `index.html`/`styles.css`). Probado con Node (lógica) y Chromium headless (claro, oscuro, menú).
+
+- 2026-11-09 Estado «Cursando». Probado igual que el anterior.
+
 ## Pendiente
 - Nada abierto. `correciones.md` sigue con el ítem 1 escrito (ya resuelto).
 
@@ -29,4 +40,4 @@ Mapa interactivo de correlativas (Lic. en Informática e Ing. Aeroespacial). Sit
 - Probar: `python3 -m http.server` en esta carpeta y abrir `http://localhost:8000/?c=aeroespacial`.
 
 ## Problemas conocidos
-- No hay Node en el entorno: se verificó con Firefox headless (lógica + capturas), no en Chrome/Safari reales.
+- Hay Node y Chromium headless (`~/.cache/ms-playwright/chromium-1248/chrome-linux64/chrome`); Safari no se probó.

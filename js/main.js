@@ -29,6 +29,10 @@ function howItems() {
     "Tocá una materia para elegir su estado.",
     cursar,
     "Para <b>aprobar</b> (rendir el final) se exigen las correlativas aprobadas.",
+    "Una materia <b>cursando</b> no habilita correlativas: hasta regularizarla cuenta como pendiente.",
+    ...(career.rules?.promo
+      ? ["Una materia se puede <b>promocionar</b> con las correlativas regulares: queda en violeta y pasa sola a aprobada cuando apruebes sus correlativas."]
+      : []),
     "Los requisitos “Tener N materias aprobadas” cuentan solo las aprobadas.",
     "Pasá el mouse sobre una materia para ver sus vínculos.",
   ];
@@ -45,8 +49,10 @@ function refresh() {
   board.render();
   const s = engine.stats();
   $("pa").style.width = (s.approved / s.total) * 100 + "%";
+  $("pp").style.width = (s.promoted / s.total) * 100 + "%";
   $("pr").style.width = (s.regular / s.total) * 100 + "%";
-  $("pt").textContent = `${s.approved} aprobadas · ${s.regular} regulares · de ${s.total}`;
+  const pro = engine.promo ? ` · ${s.promoted} promocionadas` : "";
+  $("pt").textContent = `${s.approved} aprobadas${pro} · ${s.regular} regulares · ${s.cursando} cursando · de ${s.total}`;
 }
 
 function mount() {
@@ -58,6 +64,8 @@ function mount() {
   $("career").value = career.id;
   fitSelect();
   list($("how"), howItems());
+  $("lg-pro").hidden = !engine.promo;
+  $("hint").textContent = `Tocá una materia para cambiar su estado: pendiente, cursando, regular${engine.promo ? ", promocionada" : ""} o aprobada.`;
   const notes = [].concat(career.notes || []);
   $("notes-box").hidden = !notes.length;
   list($("notes"), notes);

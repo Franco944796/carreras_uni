@@ -12,16 +12,16 @@
   <div>
     <div class="eyebrow">Mapa de correlativas</div>
     <h1 class="title"><span id="icon"></span><span class="pick" id="pick"><select id="career" aria-label="Elegir carrera"></select></span><span id="plan" class="plan"></span></h1>
-    <div class="sub">Tocá una materia para cambiar su estado: pendiente, regular o aprobada.</div>
+    <div class="sub" id="hint">Tocá una materia para cambiar su estado: pendiente, cursando, regular o aprobada.</div>
   </div>
   <div class="stats">
-    <div class="bar"><i class="a" id="pa"></i><i class="r" id="pr"></i></div>
+    <div class="bar"><i class="a" id="pa"></i><i class="p" id="pp"></i><i class="r" id="pr"></i></div>
     <span id="pt" class="pt"></span>
     <button id="rs">Reiniciar</button>
     <span id="visits" class="visits" hidden></span>
   </div>
 </header>
-<div class="legend"><span class="l1">Aprobada</span><span class="lr">Regular (sin final)</span><span class="l2">Disponible para cursar</span><span class="l3">Bloqueada</span></div>
+<div class="legend"><span class="l1">Aprobada</span><span class="lp" id="lg-pro" hidden>Promocionada</span><span class="lr">Regular (sin final)</span><span class="lc">Cursando</span><span class="l2">Disponible para cursar</span><span class="l3">Bloqueada</span></div>
 <details class="info">
   <summary>Cómo funciona y supuestos</summary>
   <div class="cols">

@@ -8,7 +8,8 @@ export default {
   bg: "circuit",
   name: "Licenciatura en Informática",
   plan: "Plan 2021",
-  rules: { cursar: "regular" }, // "approved" si para cursar exigen correlativas aprobadas
+  // promo: se puede promocionar con correlativas regulares; la nota se pasa al aprobarlas.
+  rules: { cursar: "regular", promo: true }, // cursar: "approved" si exigen correlativas aprobadas
   labels: { 0: ["Ingreso", "Curso de ingreso"] },
   notes: [
     "El Taller de Inglés (SI208) no tiene correlativas, pero es requisito de las materias donde figura.",
